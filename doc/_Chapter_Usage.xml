@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This is an automatically generated file. -->
+<Chapter Label="Chapter_Usage">
+<Heading>Usage</Heading>
+
+<Section Label="Chapter_Usage_Section_Available_functions">
+<Heading>Available functions</Heading>
+
+In this section we shall look at the functions provided by gint. <Math>\texttt{gint}</Math> allows
+GAP to communicate with external LP solver process via a stream object of category IsInputOutputStream(). This stream serves as a
+handle via which one can load/solve/modify linear programs. Note that it is possible to maintain several such steams (and hence LPs)
+at any given time. However, the gap commands to solve/modify these LPs that currently available in this package are blocking functions.
+Note that Gurobi is a floating-point solver. All matrices and lists to be passed to and returned by the functions of this package are assumed to containing
+rational numbers. Internally, they are converted to double precision floats using the Gnu Multiple Precision (GMP) library <Cite Key="Granlund12"/>.
+<ManSection>
+  <Func Arg="obj,A,b,linrows,gint_exec,optargs" Name="LoadGRBLP" />
+ <Returns>A list
+</Returns>
+ <Description>
+This function loads an LP by invoking external Gurobi LP solver process.
+It accepts following arguments:
+<List>
+<Item>
+<Math>obj</Math> - Objective function coefficients, provided as a list
+</Item>
+<Item>
+<Math>A</Math> - A list of lists corresponding to constraints
+</Item>
+<Item>
+<Math>b</Math> - Right hand side of constraints
+</Item>
+<Item>
+<Math>linrows</Math> - A list of indices of members of <Math>A</Math> that are equalities
+</Item>
+<Item>
+<Math>gint\_exec</Math> - A string describing complete path to 'gint' executable (including 'gint')
+</Item>
+</List>
+Returns a list <Math>[s,rval]</Math> where 's' is a gap object of category IsInputOutputStream() and 'rval'
+<Math>=</Math>zero/non-zero indicates success/failure. If 'rval=0', 's' is ready to be be used to solve linear programs.
+ </Description>
+</ManSection>
+
+
+<ManSection>
+  <Func Arg="s,obj" Name="LoadGRBLPobj" />
+ <Returns>An integer
+</Returns>
+ <Description>
+This function loads a new objective.
+It accepts following arguments:
+<List>
+<Item>
+<Math>s</Math> - gap object of category IsInputOutputStream(), handle to an already loaded LP
+</Item>
+<Item>
+<Math>obj</Math> - Objective function coefficients, provided as a list
+</Item>
+</List>
+Returns an integer 'rval' <Math>=</Math>zero/non-zero that indicate success/failure. If 'rval=0',
+the LP associated with 's' is successfully modified.
+ </Description>
+</ManSection>
+
+
+<ManSection>
+  <Func Arg="s,optargs" Name="SolveGRBLP" />
+ <Returns>An integer
+</Returns>
+ <Description>
+This function loads an LP by invoking external qsopt-exact LP solver process.
+It accepts following arguments:
+<List>
+<Item>
+<Math>s</Math> - gap object of category IsInputOutputStream(), handle to an already loaded LP
+</Item>
+<Item>
+<Math>optargs</Math> - A list of optional arguments. Currently supports only one optional argument, which is an integer
+specifying the algorithm to use: -<Math>1=</Math>automatic, <Math>0=</Math>primal simplex, <Math>1=</Math>dual simplex, <Math>2=</Math>barrier, <Math>3=</Math>concurrent, <Math>4=</Math>deterministic concurrent
+</Item>
+</List>
+Returns an integer <Math>status</Math> that is the integer value of the Status attribute associated with the Gurobi model.
+ </Description>
+</ManSection>
+
+
+<ManSection>
+  <Func Arg="s" Name="FlushGRBLP" />
+ <Returns></Returns>
+ <Description>
+This function terminates the external processes associated with given LP handle.
+It accepts following arguments:
+<List>
+<Item>
+<Math>s</Math> - gap object of category IsInputOutputStream(), handle to an already loaded LP
+</Item>
+</List>
+Returns Nothing
+ </Description>
+</ManSection>
+
+
+<ManSection>
+  <Func Arg="s" Name="GetGRBLPsol_primal" />
+ <Returns>A list
+</Returns>
+ <Description>
+This function obtains the primal solution along with the associated vertex, for the most recently solved LP.
+It accepts following arguments:
+<List>
+<Item>
+<Math>s</Math> - gap object of category IsInputOutputStream(), handle to an already loaded LP
+</Item>
+</List>
+Returns A list <Math>[status,val\_rval,val,x\_rval,x]</Math> if optimal solution exists and a list <Math>[status]</Math> otherwise. If <Math>status=2</Math>,
+<Math>val\_rval</Math> and <Math>x\_rval</Math> indicate validity of <Math>val</Math> and <Math>x</Math> (valid if <Math>0</Math> and invalid otherwise) which are optimal solution
+and (primal) vertex achieving the optimal solution respectively. Other status values correspond to the integer value of the Status attribute associated with the Gurobi model.
+ </Description>
+</ManSection>
+
+
+<ManSection>
+  <Func Arg="s" Name="GetGRBLPsol_dual" />
+ <Returns>A list
+</Returns>
+ <Description>
+This function obtains the dual solution along with the associated vertex, for the most recently solved LP.
+It accepts following arguments:
+<List>
+<Item>
+<Math>s</Math> - gap object of category IsInputOutputStream(), handle to an already loaded LP
+</Item>
+</List>
+Returns A list <Math>[status,val\_rval,val,x\_rval,x]</Math> if optimal solution exists and a list <Math>[status]</Math> otherwise. If <Math>status=2</Math>,
+<Math>val\_rval</Math> and <Math>x\_rval</Math> indicate validity of <Math>val</Math> and <Math>x</Math> (valid if <Math>0</Math> and invalid otherwise) which are optimal solution
+and (dual) vertex achieving the optimal solution respectively. Other status values correspond to the integer value of the Status attribute associated with the Gurobi model.
+ </Description>
+</ManSection>
+
+
+<ManSection>
+  <Func Arg="s,row,coef" Name="ChangeGRBrhs" />
+ <Returns>An integer
+</Returns>
+ <Description>
+This function changes the value of single rhs coefficient in specified row.
+It accepts following arguments:
+<List>
+<Item>
+<Math>s</Math> - gap object of category IsInputOutputStream(), handle to an already loaded LP
+</Item>
+<Item>
+<Math>row</Math> - row index of the inequility whose rhs is to be changed
+</Item>
+<Item>
+<Math>coef</Math> - new rhs coefficient
+</Item>
+</List>
+Returns A an integer which is itself returned by the Gurobi function to modify the rhs
+ </Description>
+</ManSection>
+
+
+<ManSection>
+  <Func Arg="s,row" Name="DelGRBrow" />
+ <Returns>An integer
+</Returns>
+ <Description>
+This function deletes the specified row.
+It accepts following arguments:
+<List>
+<Item>
+<Math>s</Math> - gap object of category IsInputOutputStream(), handle to an already loaded LP
+</Item>
+<Item>
+<Math>row</Math> - row index of the inequality to be deleted
+</Item>
+</List>
+Returns A an integer which is itself returned by Gurobi function to delete a constraint
+ </Description>
+</ManSection>
+
+
+<ManSection>
+  <Func Arg="s,row,coef" Name="ChangeGRBsense" />
+ <Returns>An integer
+</Returns>
+ <Description>
+This function changes the sense (equality or inequality) of a particular row.
+It accepts following arguments:
+<List>
+<Item>
+<Math>s</Math> - gap object of category IsInputOutputStream(), handle to an already loaded LP
+</Item>
+<Item>
+<Math>row</Math> - row index of the inequility whose sense is to be changed
+</Item>
+<Item>
+<Math>newsense</Math> - A single character string describing the new sense, "L" for <Math>\leq</Math> and "E" for <Math>=</Math>
+</Item>
+</List>
+Returns A an integer which is itself returned by Gurobi function to change the sense of a constraint
+ </Description>
+</ManSection>
+
+
+<ManSection>
+  <Func Arg="s,row,coef" Name="ChangeGRBcoef" />
+ <Returns>An integer
+</Returns>
+ <Description>
+This function changes a particular coefficient in the constraint matrix.
+It accepts following arguments:
+<List>
+<Item>
+<Math>s</Math> - gap object of category IsInputOutputStream(), handle to an already loaded LP
+</Item>
+<Item>
+<Math>row</Math> - row index of the inequility to which the coefficient to be changed belongs
+</Item>
+<Item>
+<Math>col</Math> - column index of the inequility whose sense is to be changed
+</Item>
+<Item>
+<Math>coef</Math> - A rational number or an integer
+</Item>
+</List>
+Returns A an integer which is itself returned by QSopt<Math>\_</Math>ex function <Math>\texttt{mpq}\_\texttt{QSchange}\_\texttt{sense}</Math>
+ </Description>
+</ManSection>
+
+
+</Section>
+
+
+</Chapter>
+

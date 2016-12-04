@@ -1,0 +1,35 @@
+  
+  
+                                     [1X gint [101X
+  
+  
+                       [1X An Interface to Gurobi Optimizer [101X
+  
+  
+                                      1.0
+  
+  
+                                   23/01/2016
+  
+  
+                                  Jayant Apte
+  
+  
+  
+  Jayant Apte
+      Email:    [7Xmailto:jayant91089@gmail.com[107X
+      Homepage: [7Xhttps://sites.google.com/site/jayantapteshomepage/[107X
+      Address:  [33X[0;14YDepartment of Electrical and Computer Engineering[133X
+                [33X[0;14YDrexel University[133X
+                [33X[0;14YPhiladelphia, PA 19104[133X
+  
+  
+  
+  -------------------------------------------------------
+  
+  
+  [1XContents (gint)[101X
+  
+  
+  
+  [32X

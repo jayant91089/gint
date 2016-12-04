@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This is an automatically generated file. -->
+<TitlePage>
+  <Title>
+    gint
+  </Title>
+  <Subtitle>
+    An Interface to Gurobi Optimizer
+  </Subtitle>
+  <Version>
+    1.0
+  </Version>
+  <Author>
+    Jayant Apte<Alt Only="LaTeX"><Br/></Alt>
+<Address>
+Department of Electrical and Computer Engineering<Br/>
+Drexel University<Br/>
+Philadelphia, PA 19104<Br/>
+</Address>
+<Email>jayant91089@gmail.com</Email>
+<Homepage>https://sites.google.com/site/jayantapteshomepage/</Homepage>
+
+  </Author>
+  <Date>
+    23/01/2016
+  </Date>
+  </TitlePage>

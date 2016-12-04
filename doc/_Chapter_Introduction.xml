@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This is an automatically generated file. -->
+<Chapter Label="Chapter_Introduction">
+<Heading>Introduction</Heading>
+
+<Math>\texttt{gint}</Math> is a GAP package that provides an interface to Gurobi optimizer <Cite Key="gurobi"/>.
+This is a minimalist package exposing the LP solver functionality of to GAP.
+<Math>\texttt{gint}</Math> provides a C wrapper gint.c to the Gurobi Optimizer's C API.
+It is currently available for Unix/Linux systems running GAP <Math>4.5+</Math>.
+</Chapter>
+

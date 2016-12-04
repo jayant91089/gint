@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This is an automatically generated file. -->
+<Chapter Label="Chapter_Installation">
+<Heading>Installation</Heading>
+
+Assuming you already have GAP 4.5+ installed, you can follow the step-by-step ProcedureToNormalizeGenerators
+mentioned in the README.md file that comes with this package. Then, to start using the package, invioke the following
+<Listing Type="Code"><![CDATA[
+ LoadPackage( "gint");
+]]></Listing>
+
+from within GAP.
+</Chapter>
+
